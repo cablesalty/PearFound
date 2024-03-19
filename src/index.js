@@ -103,6 +103,7 @@ app.whenReady().then(() => {
         tray.setToolTip('PearFound');
         tray.setContextMenu(trayMenu);
     } else if (process.platform == "darwin") {
+        app.setName("PearFound");
         app.dock.setMenu(dockMenu); // macOS Dock parancsok hozzáadása
     }
 }).then(() => {
@@ -133,7 +134,7 @@ app.on('activate', () => {
 // IMÁDLAK HAVER https://github.com/bogeta11040/if-youtube-channel-live
 // EZ A SZAR MEGMENTETTE A SEGGEMET AZ API KULCSOK ÉS AZ OAUTH ELŐL
 async function checkLiveStatus() {
-    fetch("https://www.youtube.com/@Pearoo").then(function (response) {
+    fetch("https://www.youtube.com/@Pearoo/streams").then(function (response) {
         return response.text();
     }).then(function (html) {
         if (html.includes("hqdefault_live.jpg")) {
