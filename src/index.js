@@ -103,7 +103,6 @@ app.whenReady().then(() => {
         tray.setToolTip('PearFound');
         tray.setContextMenu(trayMenu);
     } else if (process.platform == "darwin") {
-        app.setName("PearFound");
         app.dock.setMenu(dockMenu); // macOS Dock parancsok hozzáadása
     }
 }).then(() => {
