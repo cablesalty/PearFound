@@ -30,7 +30,6 @@ const createWindow = () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow);
 
 app.whenReady().then(() => {
     // Windows Tray ikon hozzáadása
@@ -59,7 +58,7 @@ app.whenReady().then(() => {
     ])
     tray.setToolTip('PearFound');
     tray.setContextMenu(contextMenu);
-});
+}).then(createWindow);
 
 
 
