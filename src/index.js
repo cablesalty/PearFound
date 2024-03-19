@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -31,11 +31,27 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
+// macOS Dock menu
+const dockMenu = Menu.buildFromTemplate([
+    {
+        label: 'Információ',
+        click() { 
+            createWindow();
+         }
+    },
+    {
+        label: 'PearFound Bezárása',
+        click() { 
+            app.quit();
+         }
+    },
+]);
+
 app.whenReady().then(() => {
     if (process.platform == "win32") {
         // Windows Tray ikon hozzáadása
         tray = new Tray(path.join(__dirname, "pearoo.png"));
-    
+
         const contextMenu = Menu.buildFromTemplate([
             { type: 'separator' },
             {
@@ -55,6 +71,8 @@ app.whenReady().then(() => {
         ])
         tray.setToolTip('PearFound');
         tray.setContextMenu(contextMenu);
+    } else if (process.platform == "darwin") {
+        app.dock.setMenu(dockMenu); // macOS Dock parancsok hozzáadása
     }
 }).then(createWindow);
 
