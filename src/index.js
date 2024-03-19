@@ -119,13 +119,13 @@ app.on('activate', () => {
 
 async function checkLiveStatus() {
     try {
-        const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=id&channelId=${channelId}&eventType=live&type=video`);
+        const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=id&channelId=${channelID}&eventType=live&type=video`);
         
         const isLive = response.data.items.length > 0;
         
         if (isLive) {
             console.log('Pearoo Liveol!!4! (100% veszély)');
-            // Do something when the channel is live
+            
         }
     } catch (error) {
         console.error('Hiba történt ellenörzéskor: ', error.message);
