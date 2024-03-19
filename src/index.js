@@ -33,31 +33,33 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
     // Windows Tray ikon hozzáadása
-    tray = new Tray(path.join(__dirname, "pearoo.png"));
-
-    tray.on("click", (event, bounds, position) => {
-        createWindow();
-    });
-
-    const contextMenu = Menu.buildFromTemplate([
-        { type: 'separator' },
-        {
-            label: 'Információ',
-            click: () => {
-                createWindow();
+    if (process.platform == "win32") {
+        tray = new Tray(path.join(__dirname, "pearoo.png"));
+    
+        tray.on("click", (event, bounds, position) => {
+            createWindow();
+        });
+    
+        const contextMenu = Menu.buildFromTemplate([
+            { type: 'separator' },
+            {
+                label: 'Információ',
+                click: () => {
+                    createWindow();
+                }
+            },
+            { type: 'separator' },
+            {
+                label: 'PearFound bezárása',
+                click: () => {
+                    app.quit();
+                    process.exit(0);
+                }
             }
-        },
-        { type: 'separator' },
-        {
-            label: 'PearFound bezárása',
-            click: () => {
-                app.quit();
-                process.exit(0);
-            }
-        }
-    ])
-    tray.setToolTip('PearFound');
-    tray.setContextMenu(contextMenu);
+        ])
+        tray.setToolTip('PearFound');
+        tray.setContextMenu(contextMenu);
+    }
 }).then(createWindow);
 
 
