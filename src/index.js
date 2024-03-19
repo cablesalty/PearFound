@@ -2,6 +2,8 @@ const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const axios = require('axios');
 
+const channelID = "UCsBw4YIB40Zpiw4yVIqxtbg"; // Pearoo YT csatorna ID-ja
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
     app.quit();
@@ -114,6 +116,20 @@ app.on('activate', () => {
     }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
 
+async function checkLiveStatus() {
+    try {
+        const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=id&channelId=${channelId}&eventType=live&type=video`);
+        
+        const isLive = response.data.items.length > 0;
+        
+        if (isLive) {
+            console.log('Pearoo Liveol!!4! (100% veszély)');
+            // Do something when the channel is live
+        }
+    } catch (error) {
+        console.error('Hiba történt ellenörzéskor: ', error.message);
+    }
+}
+
+setInterval(checkLiveStatus, 5000); // 5 másodpercenként checkolja hogy liveol e Pearoo
