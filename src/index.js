@@ -1,6 +1,21 @@
 const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
-const axios = require("axios");
+
+const filepath = path.join(__dirname, __filename);
+
+// PearFound indítása bejelentkezésnél
+if (process.platform == "win32") {
+    const Service = require('node-windows').Service;
+    var svc = new Service({
+        name: 'PearFound',
+        description: 'Értesít, ha Pearoo liveol.',
+        script: filepath
+    });
+    svc.on('install', function () {
+        svc.start();
+    });
+    svc.install();
+}
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
