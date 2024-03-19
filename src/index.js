@@ -63,7 +63,7 @@ const trayMenu = Menu.buildFromTemplate([
 app.whenReady().then(() => {
     if (process.platform == "win32") {
         // Windows Tray ikon hozzáadása
-        tray = new Tray(path.join(__dirname, "pearoo.png"));
+        tray = new Tray(path.join(__dirname, "pearoo.jpg"));
         tray.setToolTip('PearFound');
         tray.setContextMenu(trayMenu);
     } else if (process.platform == "darwin") {
