@@ -59,9 +59,9 @@ const createLiveWindow = () => {
 const dockMenu = Menu.buildFromTemplate([
     {
         label: 'Információ',
-        click() { 
+        click() {
             createWindow();
-         }
+        }
     }
 ]);
 
@@ -118,19 +118,18 @@ app.on('activate', () => {
 });
 
 
+// IMÁDLAK HAVER https://github.com/bogeta11040/if-youtube-channel-live
+// EZ A SZAR MEGMENTETTE A SEGGEMET AZ API KULCSOK ÉS AZ OAUTH ELŐL
 async function checkLiveStatus() {
-    try {
-        const response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=id&channelId=${channelID}&eventType=live&type=video`);
-        
-        const isLive = response.data.items.length > 0;
-        
-        if (isLive) {
-            console.log('Pearoo Liveol!!4! (100% veszély)');
-            createLiveWindow(); // Live értesítés ablak létrehozása
+    fetch("https://www.youtube.com/@Pearoo").then(function (response) {
+        return response.text();
+    }).then(function (html) {
+        if (html.includes("hqdefault_live.jpg")) {
+            createLiveWindow();
         }
-    } catch (error) {
-        console.error('Hiba történt ellenörzéskor:', error.message);
-    }
+    }).catch(function (err) {
+        console.warn('Something went wrong', err);
+    });
 }
 
 setInterval(checkLiveStatus, 5000); // 5 másodpercenként checkolja hogy liveol e Pearoo
