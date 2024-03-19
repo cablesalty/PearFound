@@ -2,6 +2,7 @@ const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const axios = require('axios');
 
+// UCwtPZLYmeerWoawWyoRiIBw Rádió 1 csatorna ID (debug)
 const channelID = "UCsBw4YIB40Zpiw4yVIqxtbg"; // Pearoo YT csatorna ID-ja
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -128,7 +129,7 @@ async function checkLiveStatus() {
             createLiveWindow(); // Live értesítés ablak létrehozása
         }
     } catch (error) {
-        console.error('Hiba történt ellenörzéskor: ', error.message);
+        console.error('Hiba történt ellenörzéskor:', error.message);
     }
 }
 
