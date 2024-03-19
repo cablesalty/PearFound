@@ -32,6 +32,37 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
+app.whenReady().then(() => {
+    // Windows Tray ikon hozzáadása
+    tray = new Tray(path.join(__dirname, "pearoo.png"));
+
+    tray.on("click", (event, bounds, position) => {
+        createWindow();
+    });
+
+    const contextMenu = Menu.buildFromTemplate([
+        { type: 'separator' },
+        {
+            label: 'Információ',
+            click: () => {
+                createWindow();
+            }
+        },
+        { type: 'separator' },
+        {
+            label: 'PearFound bezárása',
+            click: () => {
+                app.quit();
+                process.exit(0);
+            }
+        }
+    ])
+    tray.setToolTip('PearFound');
+    tray.setContextMenu(contextMenu);
+});
+
+
+
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
