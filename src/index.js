@@ -38,13 +38,7 @@ const dockMenu = Menu.buildFromTemplate([
         click() { 
             createWindow();
          }
-    },
-    {
-        label: 'PearFound Bezárása',
-        click() { 
-            app.quit();
-         }
-    },
+    }
 ]);
 
 // Windows tray menu
