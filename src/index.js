@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron');
 const path = require('path');
 
 const filepath = path.join(__dirname, __filename);
@@ -28,12 +28,6 @@ const createWindow = () => {
         resizable: false,
         width: 1000,
         height: 650,
-        webPreferences: {
-            preload: path.join(__dirname, 'preload.js'),
-            nodeIntegration: true,
-            contextIsolation: false,
-            enableRemoteModule: true
-        },
     });
 
     // and load the index.html of the app.
@@ -54,13 +48,17 @@ const createLiveWindow = () => {
         alwaysOnTop: true,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
-            nodeIntegration: true,
-            contextIsolation: false,
-            enableRemoteModule: true
+            contextIsolation: true,
         },
     });
 
+    ipcMain.on('open-pearoo-page', () => {
+        console.log("Opening Pearoo's Page...");
+        shell.openExternal("https://www.youtube.com/@Pearoo");
+    });
+
     mainWindow.loadFile(path.join(__dirname, 'live.html'));
+    mainWindow.webContents.openDevTools(); // Debug
 };
 
 // This method will be called when Electron has finished
@@ -106,8 +104,8 @@ app.whenReady().then(() => {
         app.dock.setMenu(dockMenu); // macOS Dock parancsok hozzáadása
     }
 }).then(() => {
-    createWindow();
-    // createLiveWindow(); // Debug
+    // createWindow();
+    createLiveWindow(); // Debug
 });
 
 
