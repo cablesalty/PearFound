@@ -125,7 +125,7 @@ async function checkLiveStatus() {
         
         if (isLive) {
             console.log('Pearoo Liveol!!4! (100% veszély)');
-            
+            createLiveWindow(); // Live értesítés ablak létrehozása
         }
     } catch (error) {
         console.error('Hiba történt ellenörzéskor: ', error.message);
