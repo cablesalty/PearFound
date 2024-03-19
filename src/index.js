@@ -32,13 +32,9 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 
 app.whenReady().then(() => {
-    // Windows Tray ikon hozzáadása
     if (process.platform == "win32") {
+        // Windows Tray ikon hozzáadása
         tray = new Tray(path.join(__dirname, "pearoo.png"));
-    
-        tray.on("click", (event, bounds, position) => {
-            createWindow();
-        });
     
         const contextMenu = Menu.buildFromTemplate([
             { type: 'separator' },
