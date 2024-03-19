@@ -1,6 +1,6 @@
 const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
-const axios = require('axios');
+const axios = require("axios");
 
 // UCwtPZLYmeerWoawWyoRiIBw Rádió 1 csatorna ID (debug)
 const channelID = "UCsBw4YIB40Zpiw4yVIqxtbg"; // Pearoo YT csatorna ID-ja
