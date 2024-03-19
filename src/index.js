@@ -47,30 +47,31 @@ const dockMenu = Menu.buildFromTemplate([
     },
 ]);
 
+// Windows tray menu
+const trayMenu = Menu.buildFromTemplate([
+    { type: 'separator' },
+    {
+        label: 'Információ',
+        click: () => {
+            createWindow();
+        }
+    },
+    { type: 'separator' },
+    {
+        label: 'PearFound Bezárása',
+        click: () => {
+            app.quit();
+            process.exit(0);
+        }
+    }
+]);
+
 app.whenReady().then(() => {
     if (process.platform == "win32") {
         // Windows Tray ikon hozzáadása
         tray = new Tray(path.join(__dirname, "pearoo.png"));
-
-        const contextMenu = Menu.buildFromTemplate([
-            { type: 'separator' },
-            {
-                label: 'Információ',
-                click: () => {
-                    createWindow();
-                }
-            },
-            { type: 'separator' },
-            {
-                label: 'PearFound bezárása',
-                click: () => {
-                    app.quit();
-                    process.exit(0);
-                }
-            }
-        ])
         tray.setToolTip('PearFound');
-        tray.setContextMenu(contextMenu);
+        tray.setContextMenu(trayMenu);
     } else if (process.platform == "darwin") {
         app.dock.setMenu(dockMenu); // macOS Dock parancsok hozzáadása
     }
