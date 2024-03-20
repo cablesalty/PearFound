@@ -70,9 +70,15 @@ const createLiveWindow = () => {
 const trayMenu = Menu.buildFromTemplate([
     { type: 'separator' },
     {
-        label: 'Információ',
+        label: 'Megnyitás: Pearoo YouTube csatornája',
         click: () => {
-            createWindow();
+            shell.openExternal("https://www.youtube.com/@Pearoo");
+        }
+    },
+    {
+        label: 'Megnyitás: cablesalty YouTube csatornája',
+        click: () => {
+            shell.openExternal("https://www.youtube.com/@cablesalty");
         }
     },
     { type: 'separator' },
