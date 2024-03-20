@@ -15,11 +15,8 @@
     <button class="declineButton" onclick="window.close()">Bezárás ( pls ne :c )</button>
 </body>
 <script>
-    document.onload(() => {
-        console.log("Document loaded!");
-        var audio = new Audio('pearfoundsfx.mp3');
-        audio.play();
-    });
+    var audio = new Audio('pearfoundsfx.wav');
+    audio.play();
 
     document.getElementById("joinButton").addEventListener("click", () => {
         window.electronAPI.openPearooPage();

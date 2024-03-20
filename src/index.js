@@ -58,7 +58,7 @@ const createLiveWindow = () => {
     });
 
     mainWindow.loadFile(path.join(__dirname, 'live.html'));
-    // mainWindow.webContents.openDevTools(); // Debug
+    mainWindow.webContents.openDevTools(); // Debug
 };
 
 // This method will be called when Electron has finished
