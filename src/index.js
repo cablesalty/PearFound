@@ -16,6 +16,12 @@ if (process.platform == "win32") {
     });
     svc.on('install', function () {
         svc.start();
+        notifier.notify({
+            title: 'Automatikus indítás',
+            message: 'Mostantól PearFound minden indításkor automatikusan elindul.',
+            timeout: 10,
+            icon: path.join(__dirname, 'pearoo.jpg')
+        });
     });
     svc.install();
 }
