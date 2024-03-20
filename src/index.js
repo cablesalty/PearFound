@@ -101,8 +101,8 @@ app.whenReady().then(() => {
         app.dock.hide(); // Elrejtés a dockból
     }
 }).then(() => {
-    // createWindow();
-    // createLiveWindow(); // Debug
+    // createWindow(); // Debug
+    createLiveWindow(); // Debug
     notifier.notify({
         title: 'PearFound a háttérben fut',
         message: 'Értesíteni fogunk, ha Pearoo streamet indít!',
