@@ -4,6 +4,7 @@ const notifier = require("node-notifier");
 
 const filepath = __filename;
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
+let isLiveWindowOpen = false;
 
 // PearFound indítása bejelentkezésnél
 if (process.platform == "win32") {
@@ -69,8 +70,14 @@ const createLiveWindow = () => {
         });
     });
 
+    isLiveWindowOpen = true;
+
+    mainWindow.on("closed", () => {
+        isLiveWindowOpen = false;
+    });
+
     mainWindow.loadFile(path.join(__dirname, 'live.html'));
-    mainWindow.webContents.openDevTools(); // Debug
+    // mainWindow.webContents.openDevTools(); // Debug
 };
 
 // This method will be called when Electron has finished
@@ -191,18 +198,20 @@ app.on('activate', () => {
 // IMÁDLAK HAVER https://github.com/bogeta11040/if-youtube-channel-live
 // EZ A SZAR MEGMENTETTE A SEGGEMET AZ API KULCSOK ÉS AZ OAUTH ELŐL
 async function checkLiveStatus() {
-    if (!silencedNotificationCycleCount > 0) {
-        fetch("https://www.youtube.com/@Pearoo/streams").then(function (response) {
-            return response.text();
-        }).then(function (html) {
-            if (html.includes("hqdefault_live.jpg")) {
-                createLiveWindow();
-            }
-        }).catch(function (err) {
-            console.warn('Something went wrong', err);
-        });
-    } else {
-        silencedNotificationCycleCount--;
+    if (!isLiveWindowOpen) {
+        if (!silencedNotificationCycleCount > 0) {
+            fetch("https://www.youtube.com/@Pearoo/streams").then(function (response) {
+                return response.text();
+            }).then(function (html) {
+                if (html.includes("hqdefault_live.jpg")) {
+                    createLiveWindow();
+                }
+            }).catch(function (err) {
+                console.warn('Something went wrong', err);
+            });
+        } else {
+            silencedNotificationCycleCount--;
+        }
     }
 }
 
