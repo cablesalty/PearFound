@@ -3,6 +3,7 @@ const path = require('path');
 const notifier = require("node-notifier");
 
 const filepath = path.join(__dirname, __filename);
+let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 
 // PearFound indítása bejelentkezésnél
 if (process.platform == "win32") {
@@ -58,6 +59,16 @@ const createLiveWindow = () => {
         shell.openExternal("https://www.youtube.com/@Pearoo");
     });
 
+    ipcMain.on('closednotif', () => {
+        console.log("Notification was closed...");
+        notifier.notify({
+            title: 'Stream értesítés bezárva',
+            message: '1 óráig nem fogsz értesítést kapni Pearoo élő adásáról. Ezt ki tudod kapcsolni a tálcaikonban.',
+            timeout: 10,
+            icon: path.join(__dirname, 'pearoo.jpg')
+        });
+    });
+
     mainWindow.loadFile(path.join(__dirname, 'live.html'));
     mainWindow.webContents.openDevTools(); // Debug
 };
@@ -68,6 +79,55 @@ const createLiveWindow = () => {
 
 // Windows tray menu
 const trayMenu = Menu.buildFromTemplate([
+    { type: 'separator' },
+    {
+        label: 'Értesítések letiltása 1 órára',
+        click: () => {
+            notifier.notify({
+                title: 'Értesítések letiltva',
+                message: '1 óráig nem fogsz stream értesítéseket kapni.',
+                timeout: 10,
+                icon: path.join(__dirname, 'pearoo.jpg')
+            });
+            silencedNotificationCycleCount = 720;
+        }
+    },
+    {
+        label: 'Értesítések letiltása 2 órára',
+        click: () => {
+            notifier.notify({
+                title: 'Értesítések letiltva',
+                message: '2 óráig nem fogsz stream értesítéseket kapni.',
+                timeout: 10,
+                icon: path.join(__dirname, 'pearoo.jpg')
+            });
+            silencedNotificationCycleCount = 1440;
+        }
+    },
+    {
+        label: 'Értesítések letiltása 5 órára',
+        click: () => {
+            notifier.notify({
+                title: 'Értesítések letiltva',
+                message: '1 óráig nem fogsz stream értesítéseket kapni.',
+                timeout: 10,
+                icon: path.join(__dirname, 'pearoo.jpg')
+            });
+            silencedNotificationCycleCount = 3600;
+        }
+    },
+    {
+        label: 'Értesítés-letiltás kikapcsolása',
+        click: () => {
+            notifier.notify({
+                title: 'Értesítések engedélyezve :D',
+                message: 'Újból kapni fogsz értesítéseket.',
+                timeout: 10,
+                icon: path.join(__dirname, 'pearoo.jpg')
+            });
+            silencedNotificationCycleCount = 0;
+        }
+    },
     { type: 'separator' },
     {
         label: 'Megnyitás: Pearoo YouTube csatornája',
@@ -102,7 +162,7 @@ app.whenReady().then(() => {
     }
 }).then(() => {
     // createWindow(); // Debug
-    createLiveWindow(); // Debug
+    // createLiveWindow(); // Debug
     notifier.notify({
         title: 'PearFound a háttérben fut',
         message: 'Értesíteni fogunk, ha Pearoo streamet indít!',
@@ -131,15 +191,19 @@ app.on('activate', () => {
 // IMÁDLAK HAVER https://github.com/bogeta11040/if-youtube-channel-live
 // EZ A SZAR MEGMENTETTE A SEGGEMET AZ API KULCSOK ÉS AZ OAUTH ELŐL
 async function checkLiveStatus() {
-    fetch("https://www.youtube.com/@Pearoo/streams").then(function (response) {
-        return response.text();
-    }).then(function (html) {
-        if (html.includes("hqdefault_live.jpg")) {
-            createLiveWindow();
-        }
-    }).catch(function (err) {
-        console.warn('Something went wrong', err);
-    });
+    if (!silencedNotificationCycleCount > 0) {
+        fetch("https://www.youtube.com/@Pearoo/streams").then(function (response) {
+            return response.text();
+        }).then(function (html) {
+            if (html.includes("hqdefault_live.jpg")) {
+                createLiveWindow();
+            }
+        }).catch(function (err) {
+            console.warn('Something went wrong', err);
+        });
+    } else {
+        silencedNotificationCycleCount--;
+    }
 }
 
 setInterval(checkLiveStatus, 5000); // 5 másodpercenként checkolja hogy liveol e Pearoo
