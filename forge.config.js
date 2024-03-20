@@ -5,8 +5,7 @@ module.exports = {
   packagerConfig: {
     asar: true,
     name: "PearFound",
-    icon: "src/pearoo.jpg",
-    Animation: "src/installAnim.gif"
+    icon: "src/pearoo.jpg"
   },
   rebuildConfig: {},
   makers: [
