@@ -13,25 +13,10 @@ if (process.platform == "win32") {
         description: 'Értesít, ha Pearoo liveol.',
         script: filepath
     });
-
-    // Check: létezik e már a service
-    svc.exists(function(exists) {
-        if (exists) {
-            console.log('Service már regisztrálva.');
-        } else {
-            // Nincs még regisztrálva mint service
-            svc.on('install', function () {
-                svc.start();
-            });
-            svc.install();
-            notifier.notify({
-                title: 'Automatikus indítás',
-                message: 'PearFound automatikusan el fog indulni a rendszer indításakor.',
-                timeout: 10,
-                icon: path.join(__dirname, 'pearoo.jpg')
-            });
-        }
+    svc.on('install', function () {
+        svc.start();
     });
+    svc.install();
 }
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
