@@ -6,7 +6,7 @@ module.exports = {
     asar: true,
     name: "PearFound",
     icon: "src/pearoo.jpg",
-    // Animation: "coming soon :D"
+    Animation: "src/installAnim.gif"
   },
   rebuildConfig: {},
   makers: [
