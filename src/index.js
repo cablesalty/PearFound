@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Menu, ipcMain, shell } = require('electron');
 const path = require('path');
+const notifier = require("node-notifier");
 
 const filepath = path.join(__dirname, __filename);
 
@@ -65,16 +66,6 @@ const createLiveWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 
-// macOS Dock menu
-const dockMenu = Menu.buildFromTemplate([
-    {
-        label: 'Információ',
-        click() {
-            createWindow();
-        }
-    }
-]);
-
 // Windows tray menu
 const trayMenu = Menu.buildFromTemplate([
     { type: 'separator' },
@@ -101,11 +92,17 @@ app.whenReady().then(() => {
         tray.setToolTip('PearFound');
         tray.setContextMenu(trayMenu);
     } else if (process.platform == "darwin") {
-        app.dock.setMenu(dockMenu); // macOS Dock parancsok hozzáadása
+        app.dock.hide(); // Elrejtés a dockból
     }
 }).then(() => {
     // createWindow();
-    createLiveWindow(); // Debug
+    // createLiveWindow(); // Debug
+    notifier.notify({
+        title: 'PearFound a háttérben fut',
+        message: 'Értesíteni fogunk, ha Pearoo streamet indít!',
+        timeout: 10,
+        icon: path.join(__dirname, 'pearoo.jpg')
+    });
 });
 
 
@@ -114,9 +111,7 @@ app.whenReady().then(() => {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') {
-        app.quit();
-    }
+    // Ne csináljon semmit
 });
 
 app.on('activate', () => {
@@ -126,7 +121,6 @@ app.on('activate', () => {
         createWindow();
     }
 });
-
 
 // IMÁDLAK HAVER https://github.com/bogeta11040/if-youtube-channel-live
 // EZ A SZAR MEGMENTETTE A SEGGEMET AZ API KULCSOK ÉS AZ OAUTH ELŐL
