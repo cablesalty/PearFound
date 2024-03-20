@@ -2,7 +2,7 @@ const { app, BrowserWindow, Menu, ipcMain, shell, Tray } = require('electron');
 const path = require('path');
 const notifier = require("node-notifier");
 
-const filepath = path.join(__dirname, __filename);
+const filepath = __filename;
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 
 // PearFound indítása bejelentkezésnél
