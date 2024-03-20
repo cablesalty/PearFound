@@ -58,6 +58,13 @@ const createLiveWindow = () => {
     ipcMain.on('open-pearoo-page', () => {
         console.log("Opening Pearoo's Page...");
         shell.openExternal("https://www.youtube.com/@Pearoo");
+        notifier.notify({
+            title: 'Stream értesítés elfogadva',
+            message: '5 óráig nem fogsz értesítéseket kapni, a stream nézés meg nem zavarása érdekében.',
+            timeout: 10,
+            icon: path.join(__dirname, 'pearoo.jpg')
+        });
+        silencedNotificationCycleCount = 3600;
     });
 
     ipcMain.on('closednotif', () => {
@@ -68,6 +75,7 @@ const createLiveWindow = () => {
             timeout: 10,
             icon: path.join(__dirname, 'pearoo.jpg')
         });
+        silencedNotificationCycleCount = 720;
     });
 
     isLiveWindowOpen = true;
