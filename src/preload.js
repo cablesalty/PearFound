@@ -4,5 +4,6 @@
 const { contextBridge, ipcRenderer } = require('electron/renderer')
 
 contextBridge.exposeInMainWorld('electronAPI', {
-    openPearooPage: () => ipcRenderer.send('open-pearoo-page')
-})
+    openPearooPage: () => ipcRenderer.send('open-pearoo-page'),
+    closednotif: () => ipcRenderer.send('closednotif')
+});

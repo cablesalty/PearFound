@@ -15,7 +15,7 @@
         <h2>Pearoo Élő Adást Indított!</h2>
         <br>
         <button class="acceptButton" id="joinButton">CSATLAKOZÁS</button><br>
-        <button class="declineButton" onclick="window.close()">Bezárás ( pls ne :c )</button>
+        <button class="declineButton" id="closeButton">Bezárás ( pls ne :c )</button>
     </div>
 
     <!-- Animáció container -->
@@ -32,6 +32,11 @@
 
     document.getElementById("joinButton").addEventListener("click", () => {
         window.electronAPI.openPearooPage();
+        window.close();
+    });
+
+    document.getElementById("closeButton").addEventListener("click", () => {
+        window.electronAPI.closednotif();
         window.close();
     });
 </script>
