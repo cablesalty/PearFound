@@ -109,7 +109,7 @@ const trayMenu = Menu.buildFromTemplate([
         click: () => {
             notifier.notify({
                 title: 'Értesítések letiltva',
-                message: '1 óráig nem fogsz stream értesítéseket kapni.',
+                message: '5 óráig nem fogsz stream értesítéseket kapni.',
                 timeout: 10,
                 icon: path.join(__dirname, 'pearoo.jpg')
             });
