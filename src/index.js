@@ -1,29 +1,41 @@
 const { app, BrowserWindow, Menu, ipcMain, shell, Tray } = require('electron');
 const path = require('path');
 const notifier = require("node-notifier");
+const fs = require("fs");
 
 const filepath = __filename;
+const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
+
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 let isLiveWindowOpen = false;
 
+function createWindowsShortcut(target, shortcutPath) {
+    // Windows parancsikon készítése
+    shell.exec(`powershell.exe -Command "(New-Object -ComObject WScript.Shell).CreateShortcut('${shortcutPath}').TargetPath = '${target}'; (New-Object -ComObject WScript.Shell).CreateShortcut('${shortcutPath}').Save()"`);
+}
+
 // PearFound indítása bejelentkezésnél
 if (process.platform == "win32") {
-    const Service = require('node-windows').Service;
-    var svc = new Service({
-        name: 'PearFound',
-        description: 'Értesít, ha Pearoo liveol.',
-        script: filepath
-    });
-    svc.on('install', function () {
-        svc.start();
-        notifier.notify({
-            title: 'Automatikus indítás',
-            message: 'Mostantól PearFound minden indításkor automatikusan elindul.',
-            timeout: 10,
-            icon: path.join(__dirname, 'pearoo.jpg')
-        });
-    });
-    svc.install();
+    //! Hibás kód, nem indul el bejelentkezéskor
+    // const Service = require('node-windows').Service;
+    // var svc = new Service({
+    //     name: 'PearFound',
+    //     description: 'Értesít, ha Pearoo liveol.',
+    //     script: filepath
+    // });
+    // svc.on('install', function () {
+    //     svc.start();
+    //     notifier.notify({
+    //         title: 'Automatikus indítás',
+    //         message: 'Mostantól PearFound minden indításkor automatikusan elindul.',
+    //         timeout: 10,
+    //         icon: path.join(__dirname, 'pearoo.jpg')
+    //     });
+    // });
+    // svc.install();
+
+    // HACK: Szar ideiglenes megoldás.
+    createWindowsShortcut(filepath, windowsShellStartup);
 }
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -216,7 +228,7 @@ app.on('activate', () => {
 async function checkLiveStatus() {
     if (!isLiveWindowOpen) {
         if (!silencedNotificationCycleCount > 0) {
-            fetch("https://www.youtube.com/@Pearoo/streams").then(function (response) {
+            fetch("https://www.youtube.com/@radio1hungary/streams").then(function (response) {
                 return response.text();
             }).then(function (html) {
                 if (html.includes("hqdefault_live.jpg")) {
