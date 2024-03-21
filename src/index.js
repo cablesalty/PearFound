@@ -257,7 +257,7 @@ app.on('activate', () => {
 async function checkLiveStatus() {
     if (!isLiveWindowOpen) {
         if (!silencedNotificationCycleCount > 0) {
-            fetch("https://www.youtube.com/@radio1hungary/streams").then(function (response) {
+            fetch("https://www.youtube.com/@Pearoo/streams").then(function (response) {
                 return response.text();
             }).then(function (html) {
                 if (html.includes("hqdefault_live.jpg")) {
