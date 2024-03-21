@@ -10,34 +10,62 @@ const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 let isLiveWindowOpen = false;
 
-function createWindowsShortcut(target, shortcutPath) {
-    // Windows parancsikon készítése
-    execSync(`powershell.exe -Command "(New-Object -ComObject WScript.Shell).CreateShortcut('${shortcutPath}').TargetPath = '${target}'; (New-Object -ComObject WScript.Shell).CreateShortcut('${shortcutPath}').Save()"`);
+function configureStartup() {
+    const platform = process.platform;
+    let command;
+
+    // Determine the appropriate command based on the platform
+    switch (platform) {
+        case 'win32':
+            // Windows
+            // Replace "your-script.js" with the path to your script
+            command = `schtasks /create /tn "MyNodeApp" /sc onstart /tr "node ${__dirname}\\your-script.js" /ru System /RL HIGHEST /F`;
+            break;
+        case 'linux':
+            // Linux
+            // Replace "your-script.js" with the path to your script
+            command = `echo "@reboot node ${__dirname}/your-script.js" | crontab -`;
+            break;
+        case 'darwin':
+            // macOS
+            // Replace "your-script.js" with the path to your script
+            command = `echo "@reboot node ${__dirname}/your-script.js" | crontab -`;
+            break;
+        default:
+            console.error(`Unsupported platform: ${platform}`);
+            return;
+    }
+
+    try {
+        execSync(command);
+        console.log('Startup configuration successful.');
+    } catch (error) {
+        console.error('Error configuring startup:', error.stderr.toString());
+    }
 }
+
 
 // PearFound indítása bejelentkezésnél
-if (process.platform == "win32") {
-    //! Hibás kód, nem indul el bejelentkezéskor
-    // const Service = require('node-windows').Service;
-    // var svc = new Service({
-    //     name: 'PearFound',
-    //     description: 'Értesít, ha Pearoo liveol.',
-    //     script: filepath
-    // });
-    // svc.on('install', function () {
-    //     svc.start();
-    //     notifier.notify({
-    //         title: 'Automatikus indítás',
-    //         message: 'Mostantól PearFound minden indításkor automatikusan elindul.',
-    //         timeout: 10,
-    //         icon: path.join(__dirname, 'pearoo.jpg')
-    //     });
-    // });
-    // svc.install();
+//! Hibás kód, nem indul el bejelentkezéskor
+// const Service = require('node-windows').Service;
+// var svc = new Service({
+//     name: 'PearFound',
+//     description: 'Értesít, ha Pearoo liveol.',
+//     script: filepath
+// });
+// svc.on('install', function () {
+//     svc.start();
+//     notifier.notify({
+//         title: 'Automatikus indítás',
+//         message: 'Mostantól PearFound minden indításkor automatikusan elindul.',
+//         timeout: 10,
+//         icon: path.join(__dirname, 'pearoo.jpg')
+//     });
+// });
+// svc.install();
 
-    // HACK: Szar ideiglenes megoldás.
-    createWindowsShortcut(filepath, windowsShellStartup);
-}
+// TODO: Teszt megoldás véglegesítése.
+configureStartup();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
