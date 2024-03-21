@@ -5,7 +5,7 @@ const fs = require("fs");
 const { execSync } = require('child_process');
 
 const filepath = __filename;
-const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
+// const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
 
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 let isLiveWindowOpen = false;
