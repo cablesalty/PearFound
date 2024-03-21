@@ -37,7 +37,7 @@ const createWindow = () => {
         resizable: false,
         width: 1000,
         height: 650,
-        icon: "pearoo"
+        icon: "pearoo.ico"
     });
 
     // and load the index.html of the app.
@@ -56,7 +56,7 @@ const createLiveWindow = () => {
         frame: false,
         transparent: true,
         alwaysOnTop: true,
-        icon: "pearoo",
+        icon: "pearoo.ico",
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
