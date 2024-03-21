@@ -2,6 +2,34 @@
 ### Kapj értesítést ha Pearoo élő adást indít!
 ![Értesítés](livefound-notif.png)
 
+# Telepítés
+Használd [a telepítőt](https://github.com/cablesalty/PearFound/releases/). PearFound jelenleg **kompatibilis macOS-el és Windows-al.**
+
+# Manuális telepítés
+Ha nem szeretnéd használni letölteni a telepítőt.
+## 1. Cloneold le a repository-t
+```
+git clone https://github.com/cablesalty/pearfound
+cd pearfound
+```
+*(szükséges: [Git CLI](https://git-scm.com/downloads))*
+### Vagy [töltsd le a .zip fájlt](https://github.com/cablesalty/PearFound/archive/refs/heads/main.zip)
+## 2. Node dependency-k telepítése
+A a lecloneolt mappában:
+```
+npm init -y
+npm install
+```
+*(szükséges: [Node.JS](https://nodejs.org/))*
+## 3. Program futtatása
+```
+npm run start
+```
+*(szükséges: [Node.JS](https://nodejs.org/))*
+
+### Ezután, a program elindul pont úgy, mintha [a telepítőt](https://github.com/cablesalty/PearFound/releases/) használtad volna.
+
+
 # Credits
 - **Nezushai**: Hangja benne van a sound effektbe. [Itt a klip amiből kivettem a hangját (kurva jó)](https://www.youtube.com/clip/Ugkxrou0SH8AUwXfXp1OoA6gBjn0KwGQLiRI)
 
