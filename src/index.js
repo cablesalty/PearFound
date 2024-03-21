@@ -2,6 +2,7 @@ const { app, BrowserWindow, Menu, ipcMain, shell, Tray } = require('electron');
 const path = require('path');
 const notifier = require("node-notifier");
 const fs = require("fs");
+const { execSync } = require('child_process');
 
 const filepath = __filename;
 const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
@@ -11,7 +12,7 @@ let isLiveWindowOpen = false;
 
 function createWindowsShortcut(target, shortcutPath) {
     // Windows parancsikon készítése
-    shell.exec(`powershell.exe -Command "(New-Object -ComObject WScript.Shell).CreateShortcut('${shortcutPath}').TargetPath = '${target}'; (New-Object -ComObject WScript.Shell).CreateShortcut('${shortcutPath}').Save()"`);
+    execSync(`powershell.exe -Command "(New-Object -ComObject WScript.Shell).CreateShortcut('${shortcutPath}').TargetPath = '${target}'; (New-Object -ComObject WScript.Shell).CreateShortcut('${shortcutPath}').Save()"`);
 }
 
 // PearFound indítása bejelentkezésnél
