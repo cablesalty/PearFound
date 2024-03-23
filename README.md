@@ -6,7 +6,7 @@
 Használd [a telepítőt](https://github.com/cablesalty/PearFound/releases/). PearFound jelenleg **kompatibilis macOS-el és Windows-al.**
 
 # Manuális telepítés
-Ha nem szeretnéd használni letölteni a telepítőt.
+Ha nem szeretnéd használni a prebuilt telepítőt.
 ## 1. Cloneold le a repository-t
 ```
 git clone https://github.com/cablesalty/pearfound
