@@ -33,7 +33,7 @@ module.exports = {
     {
       name: '@electron-forge/maker-wix',
       config: {
-        language: 1033,
+        language: 1038,
         manufacturer: 'cablesalty',
         icon: "app.ico"
       }
