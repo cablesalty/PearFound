@@ -2,7 +2,7 @@
   "name": "pearfound",
   "productName": "PearFound",
   "version": "1.0.0",
-  "description": "Kapj értesítést ha Pearoo élő adást indít!",
+  "description": "Kapj ertesitest ha Pearoo elo adast indit!",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
