@@ -13,7 +13,7 @@ let isLiveWindowOpen = false;
 // PearFound indítása bejelentkezésnél
 // Parancsikon létrehozása shell:startup-ban
 if (!fs.existsSync(path.join(windowsShellStartup, "PearFound.lnk"))) {
-    fs.symlink(filepath, path.join(windowsShellStartup, "PearFound"), (err) => {
+    fs.symlink(path.join(windowsShellStartup, "PearFound"), filepath, (err) => {
         if (err) {
             console.error('Parancsikon készítés hiba:', err);
             notifier.notify({
