@@ -2,7 +2,7 @@
   "name": "pearfound",
   "productName": "PearFound",
   "version": "1.0.0",
-  "description": "Kapj értesítést ha Pearoo élő adást indít!",
+  "description": "Kapj ertesitest ha Pearoo elo adast indit!",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -20,7 +20,8 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.3.0",
     "@electron-forge/plugin-fuses": "^7.3.0",
     "@electron/fuses": "^1.7.0",
-    "electron": "^29.1.4"
+    "electron": "^29.1.4",
+    "electron-wix-msi": "^5.1.3"
   },
   "keywords": [],
   "author": {
@@ -29,6 +30,7 @@
   },
   "license": "GPL-3.0-only",
   "dependencies": {
+    "@electron-forge/maker-wix": "^7.3.1",
     "electron-squirrel-startup": "^1.0.0",
     "node-notifier": "^10.0.1",
     "node-windows": "^1.0.0-beta.8"
