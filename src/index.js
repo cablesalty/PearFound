@@ -13,7 +13,7 @@ let isLiveWindowOpen = false;
 // PearFound indítása bejelentkezésnél
 // Parancsikon létrehozása shell:startup-ban
 if (process.platform == "win32") { // Csak Windows-on hozza létre a parancsikont
-    const builtfilepath = path.join(process.env.LOCALAPPDATA, "PearFound.exe");
+    const builtfilepath = path.join(process.env.LOCALAPPDATA, "pearfound", "PearFound.exe");
 
     // Debug
     console.log(__filename);
