@@ -5,32 +5,33 @@ const fs = require("fs");
 const { execSync } = require('child_process');
 
 const filepath = __filename;
-// const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
+const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
 
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 let isLiveWindowOpen = false;
 
 // PearFound indítása bejelentkezésnél
-//! Hibás kód, nem indul el bejelentkezéskor
-// const Service = require('node-windows').Service;
-// var svc = new Service({
-//     name: 'PearFound',
-//     description: 'Értesít, ha Pearoo liveol.',
-//     script: filepath
-// });
-// svc.on('install', function () {
-//     svc.start();
-//     notifier.notify({
-//         title: 'Automatikus indítás',
-//         message: 'Mostantól PearFound minden indításkor automatikusan elindul.',
-//         timeout: 10,
-//         icon: path.join(__dirname, 'pearoo.jpg')
-//     });
-// });
-// svc.install();
-
-//! FONTOS CORE FUNCTION!
-// TODO: Automatikus indítás megoldása valahogyan
+// Parancsikon létrehozása shell:startup-ban
+if (!fs.existsSync(path.join(windowsShellStartup, "PearFound.lnk"))) {
+    fs.symlink(filepath, path.join(windowsShellStartup, "PearFound"), (err) => {
+        if (err) {
+            console.error('Parancsikon készítés hiba:', err);
+            notifier.notify({
+                title: 'Sikertelen Automatikus Indítás',
+                message: 'Nem tudtunk létrehozni parancsikont. PearFound nem fog automatikusan elindulni minden bejelentkezésnél.',
+                timeout: 10,
+                icon: path.join(__dirname, 'pearoo.jpg')
+            });
+            return;
+        }
+        notifier.notify({
+            title: 'Automatikus Indítás',
+            message: 'Mostantól PearFound automatikusan el fog indulni minden bejelentkezésnél!',
+            timeout: 10,
+            icon: path.join(__dirname, 'pearoo.jpg')
+        });
+    });
+}
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
