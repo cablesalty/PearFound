@@ -2,6 +2,21 @@
 ### Kapj értesítést ha Pearoo élő adást indít!
 ![Értesítés](livefound-notif.png)
 
+# Funkciók
+- Kompatibilítás macOS-el és Windows-al
+- Gyors csatorna megnyitás
+- Értesítések engedélyezése/némítása
+- Egyedi stream értesítésablak
+- Automatikus indítás bejelentkezéskor/gépindításkor
+- Rejtett - Nincs fölösleges nyitott ablak
+- **100% Pearoo Certified**
+
+![Tray Icon](trayicon-example.png)  
+*(Windows)*
+
+![Tray Icon](dockicon-example.png)  
+*(macOS)*
+
 # Telepítés
 Használd [a telepítőt](https://github.com/cablesalty/PearFound/releases/). **PearFound jelenleg kompatibilis macOS-el és Windows-al.**
 

@@ -7,7 +7,6 @@ const { execSync } = require('child_process');
 if (require('electron-squirrel-startup')) app.quit(); // Ne induljon el a program 2x telepítéskor
 
 const filepath = __filename;
-const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
 const userDataPath = app.getPath('userData'); // Legoptimálisabb hely config tárolásra
 
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
@@ -16,6 +15,7 @@ let isLiveWindowOpen = false;
 // PearFound indítása bejelentkezésnél
 // Parancsikon létrehozása shell:startup-ban
 if (process.platform == "win32") { // Csak Windows-on hozza létre a parancsikont
+    const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
     const builtfilepath = path.join(process.env.LOCALAPPDATA, "pearfound", "PearFound.exe");
 
     if (__dirname.includes(".asar")) { // Csak akkor fusson hogyha buildelve van a program
@@ -197,7 +197,9 @@ app.whenReady().then(() => {
         tray.setToolTip('PearFound');
         tray.setContextMenu(trayMenu);
     } else if (process.platform == "darwin") {
-        app.dock.hide(); // Elrejtés a dockból
+        // app.dock.hide(); // Elrejtés a dockból
+        app.dock.setMenu(trayMenu);
+        app.dock.setIcon(path.join(__dirname, "pearoo-rounded.png"));
     }
 }).then(() => {
     // createWindow(); // Debug
