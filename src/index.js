@@ -13,40 +13,6 @@ const userDataPath = app.getPath('userData'); // Legoptimálisabb hely config t�
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 let isLiveWindowOpen = false;
 
-// PearFound indítása bejelentkezésnél
-// Parancsikon létrehozása shell:startup-ban
-if (process.platform == "win32") { // Csak Windows-on hozza létre a parancsikont
-    const builtfilepath = path.join(process.env.LOCALAPPDATA, "pearfound", "PearFound.exe");
-
-    if (__dirname.includes(".asar")) { // Csak akkor fusson hogyha buildelve van a program
-        if (!fs.existsSync(path.join(windowsShellStartup, "PearFound.symlink"))) { // Létezik e már a symlink
-            fs.symlink(builtfilepath, path.join(windowsShellStartup, "PearFound"), (err) => { // symlink létrehozása
-                if (err) {
-                    console.error('Parancsikon készítés hiba:', err);
-                    notifier.notify({
-                        title: 'Sikertelen Automatikus Indítás',
-                        message: 'Nem tudtunk létrehozni parancsikont. PearFound nem fog automatikusan elindulni. Próbáld meg a programot adminisztrátorként futtatni.',
-                        timeout: 10,
-                        icon: path.join(__dirname, 'pearoo.jpg')
-                    });
-                    return;
-                }
-                notifier.notify({
-                    title: 'Automatikus Indítás',
-                    message: 'Mostantól PearFound automatikusan el fog indulni minden bejelentkezésnél!',
-                    timeout: 10,
-                    icon: path.join(__dirname, 'pearoo.jpg')
-                });
-            });
-        }
-    }
-}
-
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) {
-    app.quit();
-}
-
 const createWindow = () => {
     // Create the browser window.
     const mainWindow = new BrowserWindow({
@@ -196,6 +162,33 @@ app.whenReady().then(() => {
         tray = new Tray(path.join(__dirname, "pearoo.jpg"));
         tray.setToolTip('PearFound');
         tray.setContextMenu(trayMenu);
+
+        // PearFound indítása bejelentkezésnél
+        // Parancsikon létrehozása shell:startup-ban
+        const builtfilepath = path.join(process.env.LOCALAPPDATA, "pearfound", "PearFound.exe");
+
+        if (__dirname.includes(".asar")) { // Csak akkor fusson hogyha buildelve van a program
+            if (!fs.existsSync(path.join(windowsShellStartup, "PearFound.symlink"))) { // Létezik e már a symlink
+                fs.symlink(builtfilepath, path.join(windowsShellStartup, "PearFound"), (err) => { // symlink létrehozása
+                    if (err) {
+                        console.error('Parancsikon készítés hiba:', err);
+                        notifier.notify({
+                            title: 'Sikertelen Automatikus Indítás',
+                            message: 'Nem tudtunk létrehozni parancsikont. PearFound nem fog automatikusan elindulni. Próbáld meg a programot adminisztrátorként futtatni.',
+                            timeout: 10,
+                            icon: path.join(__dirname, 'pearoo.jpg')
+                        });
+                        return;
+                    }
+                    notifier.notify({
+                        title: 'Automatikus Indítás',
+                        message: 'Mostantól PearFound automatikusan el fog indulni minden bejelentkezésnél!',
+                        timeout: 10,
+                        icon: path.join(__dirname, 'pearoo.jpg')
+                    });
+                });
+            }
+        }
     } else if (process.platform == "darwin") {
         app.dock.hide(); // Elrejtés a dockból
     }
