@@ -8,6 +8,7 @@ if (require('electron-squirrel-startup')) app.quit(); // Ne induljon el a progra
 
 const filepath = __filename;
 const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
+const userDataPath = app.getPath('userData'); // Legoptimálisabb hely config tárolásra
 
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 let isLiveWindowOpen = false;
