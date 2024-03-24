@@ -4,6 +4,8 @@ const notifier = require("node-notifier");
 const fs = require("fs");
 const { execSync } = require('child_process');
 
+if (require('electron-squirrel-startup')) app.quit(); // Ne induljon el a program 2x telepítéskor
+
 const filepath = __filename;
 const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
 
