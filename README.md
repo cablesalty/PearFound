@@ -7,8 +7,8 @@
 - Gyors csatorna megnyitás
 - Értesítések engedélyezése/némítása
 - Egyedi stream értesítésablak
-- Automatikus indítás bejelentkezéskor/gépindításkor
-- Rejtett - Nincs fölösleges nyitott ablak
+- Automatikus indítás bejelentkezéskor/gépindításkor (Egyenlőre csak Windows)
+- Rejtett - Nincs felesleges nyitott ablak
 - **100% Pearoo Certified**
 
 ![Tray Icon](trayicon-example.png)  
