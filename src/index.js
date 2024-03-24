@@ -12,25 +12,27 @@ let isLiveWindowOpen = false;
 
 // PearFound indítása bejelentkezésnél
 // Parancsikon létrehozása shell:startup-ban
-if (!fs.existsSync(path.join(windowsShellStartup, "PearFound.lnk"))) {
-    fs.symlink(filepath, path.join(windowsShellStartup, "PearFound"), (err) => {
-        if (err) {
-            console.error('Parancsikon készítés hiba:', err);
+if (process.platform == "win32") { // Csak Windows-on hozza létre a parancsikont
+    if (!fs.existsSync(path.join(windowsShellStartup, "PearFound.symlink"))) {
+        fs.symlink(filepath, path.join(windowsShellStartup, "PearFound"), (err) => {
+            if (err) {
+                console.error('Parancsikon készítés hiba:', err);
+                notifier.notify({
+                    title: 'Sikertelen Automatikus Indítás',
+                    message: 'Nem tudtunk létrehozni parancsikont. PearFound nem fog automatikusan elindulni. Próbáld meg a programot adminisztrátorként futtatni.',
+                    timeout: 10,
+                    icon: path.join(__dirname, 'pearoo.jpg')
+                });
+                return;
+            }
             notifier.notify({
-                title: 'Sikertelen Automatikus Indítás',
-                message: 'Nem tudtunk létrehozni parancsikont. PearFound nem fog automatikusan elindulni minden bejelentkezésnél.',
+                title: 'Automatikus Indítás',
+                message: 'Mostantól PearFound automatikusan el fog indulni minden bejelentkezésnél!',
                 timeout: 10,
                 icon: path.join(__dirname, 'pearoo.jpg')
             });
-            return;
-        }
-        notifier.notify({
-            title: 'Automatikus Indítás',
-            message: 'Mostantól PearFound automatikusan el fog indulni minden bejelentkezésnél!',
-            timeout: 10,
-            icon: path.join(__dirname, 'pearoo.jpg')
         });
-    });
+    }
 }
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
