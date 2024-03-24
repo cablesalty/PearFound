@@ -42,14 +42,14 @@ npm run start
 ```
 *(szükséges: [Node.JS](https://nodejs.org/))*
 
+**Fontos:** Ha nem buildeled le az appot, akkor nem fog automatikusan elindulni minden bejelentkezésnél.
+
 ## 4. Buildelés (opcionális)
 Ha minden jól ment a manuális telepítés során, és szeretnél egy telepítőfájlt a kódbol akkor futtasd ezt a parancsot:
 ```
 npm run make
 ```
 *(szükséges: [Node.JS](https://nodejs.org/))*
-
-**Fontos:** Ha nem buildeled le az appot, akkor nem fog automatikusan elindulni minden bejelentkezésnél.
 
 Ezáltal kapni fogsz 3 buildet az `out/make` mappában.
 
