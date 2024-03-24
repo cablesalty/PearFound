@@ -35,7 +35,8 @@ module.exports = {
       config: {
         language: 1038,
         manufacturer: 'cablesalty',
-        icon: "app.ico"
+        icon: "app.ico",
+        autoLaunch: true
       }
     }
   ],
