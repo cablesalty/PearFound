@@ -5,7 +5,7 @@ module.exports = {
   packagerConfig: {
     asar: true,
     name: "PearFound",
-    icon: "src/pearoo"
+    icon: "app.ico"
   },
   rebuildConfig: {},
   makers: [
@@ -34,7 +34,8 @@ module.exports = {
       name: '@electron-forge/maker-wix',
       config: {
         language: 1033,
-        manufacturer: 'cablesalty'
+        manufacturer: 'cablesalty',
+        icon: "app.ico"
       }
     }
   ],
