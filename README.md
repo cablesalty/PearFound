@@ -15,7 +15,7 @@
 *(Windows)*
 
 ![Tray Icon](dockicon-example.png)  
-*(macOS)*
+*(macOS (az ikon majd változni fog))*
 
 # Telepítés
 Használd [a telepítőt](https://github.com/cablesalty/PearFound/releases/). **PearFound jelenleg kompatibilis macOS-el és Windows-al.**
