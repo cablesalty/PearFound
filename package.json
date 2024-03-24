@@ -29,6 +29,7 @@
   },
   "license": "GPL-3.0-only",
   "dependencies": {
+    "@electron-forge/maker-wix": "^7.3.1",
     "electron-squirrel-startup": "^1.0.0",
     "node-notifier": "^10.0.1",
     "node-windows": "^1.0.0-beta.8"
