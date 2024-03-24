@@ -27,6 +27,15 @@ npm run start
 ```
 *(szükséges: [Node.JS](https://nodejs.org/))*
 
+## 4. Buildelés (opcionális)
+Ha minden jól ment a manuális telepítés során, és szeretnél egy telepítőfájlt a kódbol akkor futtasd ezt a parancsot:
+```
+npm run make
+```
+*(szükséges: [Node.JS](https://nodejs.org/))*
+
+Ezáltal kapni fogsz 3 buildet az `out/make` mappában.
+
 ### Ezután, a program elindul pont úgy, mintha [a telepítőt](https://github.com/cablesalty/PearFound/releases/) használtad volna.
 
 
