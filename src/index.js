@@ -15,6 +15,10 @@ let isLiveWindowOpen = false;
 if (process.platform == "win32") { // Csak Windows-on hozza létre a parancsikont
     const builtfilepath = path.join(process.env.LOCALAPPDATA, "PearFound.exe");
 
+    // Debug
+    console.log(__filename);
+    console.log(__dirname);
+
     if (!fs.existsSync(path.join(windowsShellStartup, "PearFound.symlink"))) {
         fs.symlink(builtfilepath, path.join(windowsShellStartup, "PearFound"), (err) => {
             if (err) {
