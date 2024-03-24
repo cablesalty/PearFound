@@ -40,7 +40,6 @@ if (process.platform == "win32") { // Csak Windows-on hozza létre a parancsikon
             });
         }
     }
-
 }
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
