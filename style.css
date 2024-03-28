@@ -32,6 +32,7 @@ button {
 a {
     color: #00ff00;
     font-size: larger;
+    text-decoration: none
 }
 
 .r1 h1 {
@@ -68,6 +69,8 @@ a {
 .r1 img {
     margin-top: 0px;
     margin-bottom: 0px;
+    width: 65%;
+    border-radius: 50px;
 
     opacity: 0;
     animation-name: fadeIn;
@@ -85,9 +88,31 @@ a {
     margin-bottom: 10px;
 }
 
-.r2 p {
-    margin-top: 0;
+.r2 h3 {
+    margin-left: 200px;
+    margin-right: 200px;
+    font-weight: normal;
 }
+
+.r2 img {
+    width: 60%;
+}
+
+.r3 {
+    text-align: left;
+    margin-left: 10px;
+}
+
+.r3 h3 {
+    margin-bottom: 5px;
+}
+
+.r3 p {
+    margin-top: 0px;
+    font-style: italic;
+}
+
+
 
 @keyframes fadeInBottom {
     from {
