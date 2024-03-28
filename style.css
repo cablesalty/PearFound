@@ -2,7 +2,7 @@ body {
     background-color: #000000;
     font-family: sans-serif;
     color: white;
-    margin:10px;
+    margin: 10px;
 }
 
 div {
@@ -10,7 +10,31 @@ div {
     text-align: center;
 }
 
-div h1 {
+.downloadbtncontainer {
+    margin-top: 0;
+    margin-bottom: 0;
+    opacity: 0;
+    animation-name: fadeInBottom;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-delay: 500ms;
+}
+
+button {
+    text-align: center;
+    background-color: lime;
+    border: 2px solid green;
+    border-radius: 100px;
+    width: 15%;
+    height: 35px;
+}
+
+a {
+    color: #00ff00;
+    font-size: larger;
+}
+
+.r1 h1 {
     /* text-shadow:0 0 20px #707070; */
     margin-bottom: 0px;
     font-size: 50px;
@@ -18,9 +42,14 @@ div h1 {
     background: linear-gradient(to bottom right, #eadedd 0%, #88807f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-name: fadeInBottom;
+    animation-duration: 1s;
 }
 
-div h2 {
+.r1 h2 {
     /* text-shadow:0 0 20px #707070; */
     margin-top: 7px;
     margin-bottom: 0px;
@@ -28,8 +57,55 @@ div h2 {
     background: linear-gradient(to bottom right, #05d3f2 0%, #b300ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    opacity: 0;
+    animation-delay: 300ms;
+    animation-fill-mode: forwards;
+    animation-name: fadeInBottom;
+    animation-duration: 1s;
 }
 
-div img {
+.r1 img {
     margin-top: 0px;
+    margin-bottom: 0px;
+
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 600ms;
+}
+
+.r2 h1 {
+    margin-bottom: 10px;
+}
+
+.r2 h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.r2 p {
+    margin-top: 0;
+}
+
+@keyframes fadeInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
