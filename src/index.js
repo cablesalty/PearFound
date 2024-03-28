@@ -196,7 +196,6 @@ app.whenReady().then(() => {
         tray = new Tray(path.join(__dirname, "pearoo.jpg"));
         tray.setToolTip('PearFound');
         tray.setContextMenu(trayMenu);
-        dialog.showMessageBox({ message: process.env, buttons: ["OK"] }); //DEBUG
     } else if (process.platform == "darwin") {
         // app.dock.hide(); // Elrejtés a dockból
         app.dock.setMenu(trayMenu);
@@ -205,6 +204,7 @@ app.whenReady().then(() => {
 }).then(() => {
     // createWindow(); // Debug
     // createLiveWindow(); // Debug
+    dialog.showMessageBox({ message: process.env, buttons: ["OK"] }); //DEBUG
     notifier.notify({
         title: 'PearFound a háttérben fut',
         message: 'Értesíteni fogunk, ha Pearoo streamet indít!',
