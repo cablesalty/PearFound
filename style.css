@@ -1,0 +1,35 @@
+body {
+    background-color: #000000;
+    font-family: sans-serif;
+    color: white;
+    margin:10px;
+}
+
+div {
+    width: 100%;
+    text-align: center;
+}
+
+div h1 {
+    /* text-shadow:0 0 20px #707070; */
+    margin-bottom: 0px;
+    font-size: 50px;
+    background: #aba2a1;
+    background: linear-gradient(to bottom right, #eadedd 0%, #88807f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+div h2 {
+    /* text-shadow:0 0 20px #707070; */
+    margin-top: 7px;
+    margin-bottom: 0px;
+    background: #05d3f2;
+    background: linear-gradient(to bottom right, #05d3f2 0%, #b300ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+div img {
+    margin-top: 0px;
+}
