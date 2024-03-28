@@ -196,7 +196,6 @@ app.whenReady().then(() => {
         tray = new Tray(path.join(__dirname, "pearoo.jpg"));
         tray.setToolTip('PearFound');
         tray.setContextMenu(trayMenu);
-        dialog.showMessageBox({ message: process.env, buttons: ["OK"] }); //DEBUG
     } else if (process.platform == "darwin") {
         // app.dock.hide(); // Elrejtés a dockból
         app.dock.setMenu(trayMenu);
