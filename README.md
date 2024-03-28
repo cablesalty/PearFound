@@ -18,9 +18,6 @@
 ![Tray Icon](trayicon-example.png)  
 *(Windows)*
 
-![Tray Icon](dockicon-example.png)  
-*(macOS (az ikon majd változni fog))*
-
 ![Értesítés Példa](notif-example.gif)  
 *(Így néz ki, ha értesítést kapsz)*
 
