@@ -204,7 +204,6 @@ app.whenReady().then(() => {
 }).then(() => {
     // createWindow(); // Debug
     // createLiveWindow(); // Debug
-    dialog.showMessageBox({ message: process.env, buttons: ["OK"] }); //DEBUG
     notifier.notify({
         title: 'PearFound a háttérben fut',
         message: 'Értesíteni fogunk, ha Pearoo streamet indít!',
