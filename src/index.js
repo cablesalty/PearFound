@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, ipcMain, shell, Tray } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, shell, Tray, dialog } = require('electron');
 const path = require('path');
 const notifier = require("node-notifier");
 const fs = require("fs");
@@ -16,10 +16,10 @@ let isLiveWindowOpen = false;
 // Parancsikon létrehozása shell:startup-ban
 if (process.platform == "win32") { // Csak Windows-on hozza létre a parancsikont
     const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
-    const builtfilepath = path.join(process.env.LOCALAPPDATA, "pearfound", "PearFound.exe");
+    const builtfilepath = path.join("C:", "Program Files (x86)", "PearFound", "PearFound.exe");
 
     if (__dirname.includes(".asar")) { // Csak akkor fusson hogyha buildelve van a program
-        if (!fs.existsSync(path.join(windowsShellStartup, "PearFound.symlink"))) { // Létezik e már a symlink
+        if (!fs.existsSync(path.join(windowsShellStartup, "PearFound"))) { // Létezik e már a symlink
             fs.symlink(builtfilepath, path.join(windowsShellStartup, "PearFound"), (err) => { // symlink létrehozása
                 if (err) {
                     console.error('Parancsikon készítés hiba:', err);
