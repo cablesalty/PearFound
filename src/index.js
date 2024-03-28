@@ -18,8 +18,6 @@ if (process.platform == "win32") { // Csak Windows-on hozza létre a parancsikon
     const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
     const builtfilepath = path.join("C:", "Program Files (x86)", "PearFound", "PearFound.exe");
 
-    dialog.showMessageBox({ message: process.env, buttons: ["OK"] }); //DEBUG
-
     if (__dirname.includes(".asar")) { // Csak akkor fusson hogyha buildelve van a program
         if (!fs.existsSync(path.join(windowsShellStartup, "PearFound"))) { // Létezik e már a symlink
             fs.symlink(builtfilepath, path.join(windowsShellStartup, "PearFound"), (err) => { // symlink létrehozása
@@ -198,6 +196,7 @@ app.whenReady().then(() => {
         tray = new Tray(path.join(__dirname, "pearoo.jpg"));
         tray.setToolTip('PearFound');
         tray.setContextMenu(trayMenu);
+        dialog.showMessageBox({ message: process.env, buttons: ["OK"] }); //DEBUG
     } else if (process.platform == "darwin") {
         // app.dock.hide(); // Elrejtés a dockból
         app.dock.setMenu(trayMenu);
