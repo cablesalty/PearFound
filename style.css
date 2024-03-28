@@ -134,3 +134,23 @@ a {
         opacity: 1;
     }
 }
+
+/* Mobil optimalizálás */
+@media screen and (max-width: 800px){
+    .r1 img {
+        width: 95%;
+    }
+
+    .r2 img {
+        width: 95%;
+    }
+
+    .r2 h3 {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .r1 h1 {
+        margin-top: 10px;
+    }
+}
