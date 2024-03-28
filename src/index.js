@@ -19,7 +19,7 @@ if (process.platform == "win32") { // Csak Windows-on hozza létre a parancsikon
     const builtfilepath = path.join("C:", "Program Files (x86)", "PearFound", "PearFound.exe");
 
     if (__dirname.includes(".asar")) { // Csak akkor fusson hogyha buildelve van a program
-        if (!fs.existsSync(path.join(windowsShellStartup, "PearFound.symlink"))) { // Létezik e már a symlink
+        if (!fs.existsSync(path.join(windowsShellStartup, "PearFound"))) { // Létezik e már a symlink
             fs.symlink(builtfilepath, path.join(windowsShellStartup, "PearFound"), (err) => { // symlink létrehozása
                 if (err) {
                     console.error('Parancsikon készítés hiba:', err);
