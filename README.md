@@ -1,4 +1,8 @@
 # PearFound
+![Static Badge](https://img.shields.io/badge/Pearoo-Certified-green)
+![Static Badge](https://img.shields.io/badge/Windows_Build-Stabil-blue?logo=windows&link=https%3A%2F%2Fgithub.com%2Fcablesalty%2FPearFound%2Freleases%2F)
+![Static Badge](https://img.shields.io/badge/macOS_Build-Nincs_(Nem_m%C5%B1k%C3%B6d%C3%B6tt)-red?logo=macos&link=https%3A%2F%2Fgithub.com%2Fcablesalty%2FPearFound%2Freleases%2F)
+
 ### Kapj értesítést ha Pearoo élő adást indít!
 ![Értesítés](livefound-notif.png)
 
