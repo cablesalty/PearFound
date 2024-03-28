@@ -18,13 +18,6 @@ if (process.platform == "win32") { // Csak Windows-on hozza létre a parancsikon
     const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
     const builtfilepath = path.join("C:", "Program Files (x86)", "PearFound", "PearFound.exe");
 
-    notifier.notify({
-        title: 'Developer Debug Info',
-        message: process.env,
-        timeout: 10,
-        icon: path.join(__dirname, 'pearoo.jpg')
-    });
-
     if (__dirname.includes(".asar")) { // Csak akkor fusson hogyha buildelve van a program
         if (!fs.existsSync(path.join(windowsShellStartup, "PearFound"))) { // Létezik e már a symlink
             fs.symlink(builtfilepath, path.join(windowsShellStartup, "PearFound"), (err) => { // symlink létrehozása
