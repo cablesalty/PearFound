@@ -11,7 +11,7 @@
 - Gyors csatorna megnyitás
 - Értesítések engedélyezése/némítása
 - Egyedi stream értesítésablak
-- Automatikus indítás bejelentkezéskor/gépindításkor (Egyenlőre csak Windows)
+- Automatikus indítás bejelentkezéskor/gépindításkor (beta)
 - Rejtett - Nincs felesleges nyitott ablak
 - **100% Pearoo Certified**
 
