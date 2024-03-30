@@ -1,12 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* #326fa6 */
 body {
     background-color: #000000;
+    /* background-color: red; */
     font-family: sans-serif;
     color: white;
-    margin: 10px;
+    /* margin: 10px; */
 }
 
 div {
-    width: 100%;
+    /* width: 100%; */
     text-align: center;
 }
 
@@ -32,7 +39,31 @@ button {
 a {
     color: #00ff00;
     font-size: larger;
-    text-decoration: none
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.r1 {
+    position: relative;
+    padding-top: 20px;
+}
+
+.r1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,111,166,1) 0%, rgba(0,0,0,1) 100%);
+    opacity: 0;
+
+    animation-name: fadeInBackground;
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
 }
 
 .r1 h1 {
@@ -40,7 +71,7 @@ a {
     margin-bottom: 0px;
     font-size: 50px;
     background: #aba2a1;
-    background: linear-gradient(to bottom right, #eadedd 0%, #88807f 100%);
+    background: linear-gradient(to bottom right, #eadedd 0%, #645e5e 80%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -55,7 +86,7 @@ a {
     margin-top: 7px;
     margin-bottom: 0px;
     background: #05d3f2;
-    background: linear-gradient(to bottom right, #05d3f2 0%, #b300ff 100%);
+    background: linear-gradient(to bottom right, #05d3f2 0%, #b300ff 110%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
@@ -73,10 +104,15 @@ a {
     border-radius: 50px;
 
     opacity: 0;
-    animation-name: fadeIn;
+    animation-name: smootherFadeInBottom;
     animation-duration: 1.5s;
     animation-fill-mode: forwards;
     animation-delay: 600ms;
+}
+
+.r2 {
+    padding-top: 20px;
+    background-color: #232323;
 }
 
 .r2 h1 {
@@ -86,6 +122,7 @@ a {
 .r2 h2 {
     margin-top: 0;
     margin-bottom: 10px;
+    color: #ffffff6e;
 }
 
 .r2 h3 {
@@ -96,23 +133,43 @@ a {
 
 .r2 img {
     width: 60%;
+    margin-bottom: 10px;
+}
+
+.r2 a {
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .r3 {
     text-align: left;
-    margin-left: 10px;
 }
 
-.r3 h3 {
-    margin-bottom: 5px;
+.r3 .copycontainer {
+    text-align: left;
+    margin-left: 25px;
+    margin-bottom: 25px;
+    color: #b7b7b7ff;
 }
 
-.r3 p {
-    margin-top: 0px;
-    font-style: italic;
+.separator {
+    position: relative;
+    z-index: 1;
+    width: 0;
+    height: 0;
+    border-right: 100vw solid transparent;
+    border-bottom: 10.9vw solid #232323;
+    border-top: -10.9vw;
 }
 
 
+.reverse-separator {
+    width: 0;
+    height: 0;
+    border-left: 100vw solid transparent;
+    border-top: 10.9vw solid #232323;
+    border-bottom: -10.9vw;
+}
 
 @keyframes fadeInBottom {
     from {
@@ -121,6 +178,21 @@ a {
     }
 
     to {
+        opacity: 1;
+    }
+}
+
+@keyframes smootherFadeInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    50% {
+        transform: translateY(-5%);
+    }
+
+    100% {
         opacity: 1;
     }
 }
@@ -134,6 +206,16 @@ a {
         opacity: 1;
     }
 }
+
+@keyframes fadeInBackground {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 
 /* Mobil optimalizálás */
 @media screen and (max-width: 800px){
