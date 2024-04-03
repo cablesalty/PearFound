@@ -9,17 +9,17 @@
 # Funkciók
 - Kompatibilítás macOS-el és Windows-al
 - Gyors csatorna megnyitás
-- Értesítések engedélyezése/némítása
-- Egyedi stream értesítésablak
+- Értesítések némítása
+- Egyedi stream értesítőablak
 - Automatikus indítás bejelentkezéskor/gépindításkor (beta)
+- Új verzió ellenőrzés
+- Demo mód
 - Rejtett - Nincs felesleges nyitott ablak
 - **100% Pearoo Certified**
 
-![Tray Icon](trayicon-example.png)  
-*(Windows)*
+### És így néz ki, ha értesítést kapsz
 
-![Értesítés Példa](notif-example.gif)  
-*(Így néz ki, ha értesítést kapsz)*
+![Értesítés Példa](notif-example.gif)
 
 # Telepítés
 Használd [a telepítőt](https://github.com/cablesalty/PearFound/releases/). **PearFound jelenleg kompatibilis macOS-el és Windows-al.**
