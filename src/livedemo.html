@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>PearFound</title>
+    <link rel="stylesheet" href="live.css" />
+</head>
+
+<body>
+    <br>
+    <br>
+    <div class="livefoundnotifcontainer">
+        <h1>LIVE FOUND (DEMO)</h1>
+        <h2>Így fog kinézni az értesítés, ha Pearoo élő adást indít</h2>
+        <br>
+        <button class="acceptButton" id="joinButton">CSATLAKOZÁS</button><br>
+        <button class="declineButton" id="closeButton">Bezárás ( pls ne :c )</button>
+    </div>
+
+    <!-- Animáció container -->
+    <!-- https://codepen.io/baarbaracrr/pen/KKovmGb -->
+    <div>
+        <div class="wave"></div><br><br><br>
+        <div class="wave"></div><br><br>
+        <div class="wave"></div>
+     </div>
+</body>
+<script>
+    var audio = new Audio('pearfoundsfx.wav');
+    audio.play();
+
+    document.getElementById("joinButton").addEventListener("click", () => {
+        window.electronAPI.openPearooPage();
+        window.close();
+    });
+
+    document.getElementById("closeButton").addEventListener("click", () => {
+        window.electronAPI.closednotif();
+        window.close();
+    });
+</script>
+
+</html>

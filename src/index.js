@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, ipcMain, shell, Tray, dialog } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, shell, Tray } = require('electron');
 const path = require('path');
 const notifier = require("node-notifier");
 const fs = require("fs");
@@ -112,6 +112,55 @@ const createLiveWindow = () => {
     // mainWindow.webContents.openDevTools(); // Debug
 };
 
+const createLiveDemoWindow = () => {
+    // Create the browser window.
+    const mainWindow = new BrowserWindow({
+        resizable: false,
+        width: 1000,
+        height: 650,
+        frame: false,
+        transparent: true,
+        alwaysOnTop: true,
+        icon: "pearoo.ico",
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js'),
+            contextIsolation: true,
+        },
+    });
+
+    ipcMain.on('open-pearoo-page', () => {
+        console.log("Opening Pearoo's Page...");
+        shell.openExternal("https://www.youtube.com/@Pearoo");
+        notifier.notify({
+            title: 'Stream értesítés elfogadva',
+            message: 'Ha csatlakozol az élő adáshoz, 5 óráig nem kapsz újra értesítést. Mivel ez csak egy demo, nem tiltottuk le az értesítéseket.',
+            timeout: 10,
+            icon: path.join(__dirname, 'pearoo.jpg')
+        });
+        // silencedNotificationCycleCount = 3600;
+    });
+
+    ipcMain.on('closednotif', () => {
+        console.log("Notification was closed...");
+        notifier.notify({
+            title: 'Stream értesítés bezárva',
+            message: 'Ha bezárod az értesítést, 1 óráig nem fogsz értesítést kapni. Mivel ez csak egy demo, nem tiltottuk le az értesítéseket.',
+            timeout: 10,
+            icon: path.join(__dirname, 'pearoo.jpg')
+        });
+        // silencedNotificationCycleCount = 720;
+    });
+
+    isLiveWindowOpen = true;
+
+    mainWindow.on("closed", () => {
+        isLiveWindowOpen = false;
+    });
+
+    mainWindow.loadFile(path.join(__dirname, 'livedemo.html'));
+    // mainWindow.webContents.openDevTools(); // Debug
+};
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -178,6 +227,13 @@ const trayMenu = Menu.buildFromTemplate([
         label: 'Megnyitás: cablesalty YouTube csatornája',
         click: () => {
             shell.openExternal("https://www.youtube.com/@cablesalty");
+        }
+    },
+    { type: 'separator' },
+    {
+        label: 'Demo értesítés indítása',
+        click: () => {
+            createLiveDemoWindow();
         }
     },
     { type: 'separator' },
