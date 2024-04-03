@@ -16,12 +16,15 @@
 // ===================================================
 // Importok/Requirements
 // ===================================================
-const { app, BrowserWindow, Menu, ipcMain, shell, Tray } = require('electron');
+const { app, BrowserWindow, Menu, ipcMain, shell, Tray, dialog } = require('electron');
 const path = require('path');
 const notifier = require("node-notifier");
 const fs = require("fs");
+const axios = require('axios');
 
 if (require('electron-squirrel-startup')) app.quit(); // Ne induljon el a program 2x telepítéskor
+
+const currentVersion = "v1.2.0"; // Jelenlegi app verzió
 
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 let isLiveWindowOpen = false;
@@ -302,6 +305,8 @@ app.whenReady().then(() => {
         app.dock.setIcon(path.join(__dirname, "pearoo-rounded.png"));
 
     }
+
+    checkForNewRelease(); // Van e új verzió
 }).then(() => {
     notifier.notify({
         title: 'PearFound a háttérben fut',
@@ -325,6 +330,45 @@ app.on('activate', () => {
     // Ne csináljon semmit
     // Nincs más felületünk a LIVE FOUND értesítésen kívül.
 });
+
+
+// ===================================================
+// Van e új verzió
+// ===================================================
+const checkForNewRelease = async () => {
+    try {
+        const response = await axios.get(`https://api.github.com/repos/cablesalty/PearFound/releases/latest`);
+        const latestReleaseTag = response.data.tag_name;
+        
+        // Jelenlegi verzió összehasonlítása a tag névvel
+        if (currentVersion !== latestReleaseTag) {
+            console.log('Új verzió elérhető:', latestReleaseTag);
+            const newUpdateNotif = notifier.notify({
+                title: 'Új verzió érhető el!',
+                message: 'Kattints az értesítésre az új verzió letöltéséhez!',
+                timeout: 10,
+                icon: path.join(__dirname, 'pearoo.jpg')
+            });
+
+            // Ha az értesítésre kattintanak
+            newUpdateNotif.on('click', function() {
+                // Legfrissebb verzió oldalának megnyitása
+                console.log("Legfrissebb release oldalának megnyitása...");
+                shell.openExternal("https://github.com/cablesalty/PearFound/releases/latest");
+            });
+        } else {
+            console.log('Az alkalmazás friss és ropogós.');
+        }
+    } catch (error) {
+        console.error('Hiba történt új verzió ellenőrzése közben:', error.response ? error.response.data : error.message);
+        notifier.notify({
+            title: 'Hiba történt új verzió ellenőrzése során',
+            message: 'Nem tudtuk ellenőrizni, hogy elérhető e új PearFound verzió.',
+            timeout: 10,
+            icon: path.join(__dirname, 'pearoo.jpg')
+        });
+    }
+};
 
 
 // ===================================================
