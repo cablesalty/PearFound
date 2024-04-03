@@ -1,0 +1,18 @@
+{
+    "Comment Wall": {
+        "prefix": "cw",
+        "body": [
+			"// ===================================================",
+            "$1"
+        ],
+        "description": "Comment Wall"
+    },
+    "Comment Separator": {
+        "prefix": "cs",
+        "body": [
+			"// ---------------------------------------------------",
+			"$1"
+        ],
+        "description": "Comment Seperator"
+    }
+}
