@@ -20,16 +20,11 @@ const { app, BrowserWindow, Menu, ipcMain, shell, Tray } = require('electron');
 const path = require('path');
 const notifier = require("node-notifier");
 const fs = require("fs");
-const { execSync } = require('child_process');
 
 if (require('electron-squirrel-startup')) app.quit(); // Ne induljon el a program 2x telepítéskor
 
-const filepath = __filename;
-const userDataPath = app.getPath('userData'); // Legoptimálisabb hely config tárolásra
-
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 let isLiveWindowOpen = false;
-// = END =============================================
 
 
 // ===================================================
