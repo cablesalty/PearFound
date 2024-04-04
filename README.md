@@ -1,10 +1,15 @@
-# PearFound
+<div align="center">
+<h1>PearFound</h1>
+
 ![Static Badge](https://img.shields.io/badge/Pearoo-Certified-green)
 ![Static Badge](https://img.shields.io/badge/Windows_Build-Stabil-blue?logo=windows&link=https%3A%2F%2Fgithub.com%2Fcablesalty%2FPearFound%2Freleases%2F)
 ![Static Badge](https://img.shields.io/badge/macOS_Build-Nincs_(Nem_m%C5%B1k%C3%B6d%C3%B6tt)-red?logo=macos&link=https%3A%2F%2Fgithub.com%2Fcablesalty%2FPearFound%2Freleases%2F)
 
 ### Kapj értesítést ha Pearoo élő adást indít!
+
 ![Értesítés](livefound-notif.png)
+
+</div>
 
 # Funkciók
 - Kompatibilítás macOS-el és Windows-al
@@ -17,12 +22,20 @@
 - Rejtett - Nincs felesleges nyitott ablak
 - **100% Pearoo Certified**
 
+<div align="center">
+
 ### És így néz ki, ha értesítést kapsz
+
+</div>
 
 ![Értesítés Példa](notif-example.gif)
 
 # Telepítés
 Használd [a telepítőt](https://github.com/cablesalty/PearFound/releases/). **PearFound jelenleg kompatibilis macOS-el és Windows-al.**
+
+> [!CAUTION]
+> Első indításkor (telepítés után) futtasd a programot
+> adminisztrátorként.
 
 # Első indítás (fontos)
 Ahhoz, hogy a PearFound minden bejelentkezéskor/gépindításkor elinduljon, **a telepítés után adminisztrátorként kell futtatnod a programot.**
@@ -70,7 +83,7 @@ npm run make
 ```
 *(szükséges: [Node.JS](https://nodejs.org/))*
 
-Ezáltal kapni fogsz 3 buildet az `out/make` mappában.
+A parancs kimenetét az `out/make` mappában megtalálod.
 
 ### Ezután, a program elindul pont úgy, mintha [a telepítőt](https://github.com/cablesalty/PearFound/releases/) használtad volna.
 
