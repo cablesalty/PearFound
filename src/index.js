@@ -263,9 +263,9 @@ const trayMenu = Menu.buildFromTemplate([
         }
     },
     {
-        label: 'Megnyitás: cablesalty YouTube csatornája',
+        label: 'Megnyitás: cablesalty GitHub fiókja (több ehhez hasonló projekt)',
         click: () => {
-            shell.openExternal("https://www.youtube.com/@cablesalty");
+            shell.openExternal("https://www.github.com/cablesalty");
         }
     },
     { type: 'separator' },
