@@ -25,6 +25,7 @@ const axios = require('axios');
 if (require('electron-squirrel-startup')) app.quit(); // Ne induljon el a program 2x telepítéskor
 
 const currentVersion = "v1.2.0"; // Jelenlegi app verzió
+const configPath = app.getPath("userData");
 
 let silencedNotificationCycleCount = 0; // Hány ciklusig ne kapjon a felhasználó értesítéseket (/5s)
 let isLiveWindowOpen = false;
@@ -40,7 +41,7 @@ if (process.platform == "win32") {
 
     // Pár constant Windows path ami szükséges a symlink létrehozásához
     const windowsShellStartup = path.join(process.env.APPDATA, "Microsoft", "Windows", "Start Menu", "Programs", "Startup");
-    const builtfilepath = path.join("C:", "Program Files (x86)", "PearFound", "PearFound.exe");
+    const builtfilepath = app.getPath("exe");
 
     // Csak akkor fusson le, ha le van buildelve az app
     if (__dirname.includes(".asar")) {
