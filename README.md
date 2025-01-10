@@ -11,6 +11,9 @@
 
 </div>
 
+# Figyelmeztetés! Ez a projekt nincs mostmár fenntartva.
+Sziasztok! Ezt a projektet archiválni fogom, mivel nincs időm fenntartani. A jelenlegi állapotában a program nem működik stabilan. Ha szeretnéd forkolni, tedd meg nyugodtan.
+
 # Funkciók
 - Kompatibilítás macOS-el és Windows-al
 - Gyors csatorna megnyitás
